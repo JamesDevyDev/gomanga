@@ -66,19 +66,26 @@ const MangaList = ({ page }: { page: string }) => {
 
             {/* Pagination */}
             <div className="w-full h-[60px] flex gap-2 items-center justify-end px-[50px] font-bold">
-                {pagination.map((p, index) => (
-                    <Link
-                        href={`/manga-list/${p}`}
-                        key={index}
-                        className={`px-4 py-2 text-black cursor-pointer hover:bg-red-300 ${index === 0 || index === pagination.length - 1
-                                ? 'bg-red-700 text-white'
-                                : 'bg-white'
-                            }`}
-                    >
-                        {p}
-                    </Link>
-                ))}
+                {pagination.map((p, index) => {
+                    const isCurrent = Number(p) === Number(page);
+                    return (
+                        <Link
+                            href={`/manga-list/${p}`}
+                            key={index}
+                            className={`px-4 py-2 text-black cursor-pointer hover:bg-red-300
+                    ${isCurrent
+                                    ? 'bg-yellow-400' // current page
+                                    : index === 0 || index === pagination.length - 1
+                                        ? 'bg-red-700 text-white' // first or last page
+                                        : 'bg-white'
+                                }`}
+                        >
+                            {p}
+                        </Link>
+                    );
+                })}
             </div>
+
         </div>
     )
 }
