@@ -4,6 +4,10 @@ interface MangaStore {
     MangaList: any[];
     pagination: any[];
     getMangaList: (page: number) => Promise<any>;
+
+
+    mangaDetails: any;
+    getMangaDetails: (manga: string) => Promise<any>;
 }
 
 const useMangaStore = create<MangaStore>((set, get) => ({
@@ -23,6 +27,25 @@ const useMangaStore = create<MangaStore>((set, get) => ({
             set({ MangaList: data?.data });
             set({ pagination: data?.pagination })
 
+            return data;
+        } catch (error) {
+            console.error(error);
+            return null;
+        }
+    },
+
+    mangaDetails: [],
+    getMangaDetails: async (manga) => {
+        try {
+            const res = await fetch(`/api/manga-details/${manga}`);
+            const data = await res.json();
+
+            if (!res.ok) {
+                console.error('Manga-list error');
+                return { error: true };
+            }
+
+            set({ mangaDetails: data });
             return data;
         } catch (error) {
             console.error(error);

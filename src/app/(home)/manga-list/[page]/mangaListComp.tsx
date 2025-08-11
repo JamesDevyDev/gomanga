@@ -17,7 +17,7 @@ const MangaList = ({ page }: { page: string }) => {
         <div className="bg-neutral-900 w-[100vw] overflow">
             {/* Header */}
             <div className="bg-black text-white font-bold h-[50px] flex items-center justify-start p-[50px] text-[30px]">
-                <div>Manga List <span className='text-red-700'> {page}</span></div>
+                <div>Manga list <span className='text-red-700'> {page}</span></div>
             </div>
 
             {/* Grid */}
@@ -34,13 +34,13 @@ const MangaList = ({ page }: { page: string }) => {
                     ? Array.from({ length: skeletonCount }).map((_, i) => (
                         <div
                             key={i}
-                            className="aspect-[2/3] flex flex-col overflow-hidden skeleton"
+                            className="aspect-[2/3] flex flex-col overflow-hidden rounded-none skeleton"
                         ></div>
                     ))
                     : MangaList.map((card, index) => (
-                        <div
+                        <Link href={`/manga-details/${card?.id}`}
                             key={index}
-                            className="aspect-[2/3] flex flex-col overflow-hidden min-w-0"
+                            className="aspect-[2/3] flex flex-col overflow-hidden min-w-0 group cursor-pointer"
                         >
                             <div className="bg-black w-full h-[80%] flex-shrink-0">
                                 <img
@@ -50,8 +50,8 @@ const MangaList = ({ page }: { page: string }) => {
                                 />
                             </div>
 
-                            <div className="pt-2 flex flex-col gap-1 h-[20%] min-w-0 flex-shrink">
-                                <h3 className="text-white font-semibold text-sm truncate whitespace-nowrap overflow-hidden min-w-0">
+                            <div className="pt-2 flex flex-col gap-1 h-[20%] min-w-0 flex-shrink transition-all duration-300 group-hover:-translate-y-1">
+                                <h3 className="text-white font-semibold text-sm truncate whitespace-nowrap overflow-hidden min-w-0 transition-colors duration-300 group-hover:text-yellow-400">
                                     {card?.title}
                                 </h3>
                                 {card?.latestChapter && (
@@ -60,7 +60,7 @@ const MangaList = ({ page }: { page: string }) => {
                                     </p>
                                 )}
                             </div>
-                        </div>
+                        </Link>
                     ))}
             </div>
 
