@@ -63,20 +63,20 @@ const MangaDetails = ({ manga }: { manga: string }) => {
                 </div>
             </div>
 
-            <div className='w-full min-h-[50vh] mt-[50px] rounded-lg'>
+            <div className='w-full min-h-[50vh] mt-[50px]'>
                 <div className="flex justify-between items-center mb-4">
                     <h2 className='text-white text-xl font-bold'>Chapters</h2>
                     {!loading && mangaDetails?.chapters?.length > 0 && (
                         <div className="flex gap-2">
                             <Link
                                 href={`/manga-details/${manga}/${latestChapter?.chapterId}`}
-                                className="cursor-pointer bg-red-500 hover:bg-red-700 px-4 py-2 rounded text-white text-sm font-bold relative z-50"
+                                className="cursor-pointer bg-red-500 hover:bg-red-700 px-4 py-2  text-white text-sm font-bold relative z-50"
                             >
                                 Read Latest
                             </Link>
                             <Link
                                 href={`/manga-details/${manga}/${oldestChapter?.chapterId}`}
-                                className="cursor-pointer bg-red-500 hover:bg-red-700 px-4 py-2 rounded text-white text-sm font-bold relative z-50"
+                                className="cursor-pointer bg-red-500 hover:bg-red-700 px-4 py-2  text-white text-sm font-bold relative z-50"
                             >
                                 Read Oldest
                             </Link>
@@ -96,9 +96,9 @@ const MangaDetails = ({ manga }: { manga: string }) => {
                             <Link
                                 href={`/manga-details/${manga}/${chapter?.chapterId}`}
                                 key={chapter.chapterId}
-                                className="bg-neutral-800 hover:bg-neutral-700 transition-colors p-3 rounded text-white flex justify-between items-center"
+                                className="bg-neutral-800 hover:bg-neutral-700 transition-colors p-3  text-white flex justify-between items-center"
                             >
-                                <span>Chapter {chapter.chapterId}</span>
+                                <span className='font-bold'>Chapter {chapter.chapterId}</span>
                                 <div className="text-sm text-gray-400">
                                     {chapter.uploaded} • {chapter.views} views
                                 </div>
