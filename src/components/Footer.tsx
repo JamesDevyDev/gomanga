@@ -12,7 +12,7 @@ const Footer = () => {
             <div className='w-[90%] h-[1px] bg-gray-500 absolute top-[20%]'></div>
 
             <div className="">
-                <p className="text-sm">© 2025 Your Company. All rights reserved.</p>
+                <p className="text-sm">© 2025 GoManga. All rights reserved.</p>
             </div>
         </footer>
     );
