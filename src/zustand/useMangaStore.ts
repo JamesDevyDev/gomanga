@@ -8,6 +8,9 @@ interface MangaStore {
 
     mangaDetails: any;
     getMangaDetails: (manga: string) => Promise<any>;
+
+    mangaChapter: any;
+    getMangaChapter: (manga: string, chapter: string) => Promise<any>;
 }
 
 const useMangaStore = create<MangaStore>((set, get) => ({
@@ -51,7 +54,28 @@ const useMangaStore = create<MangaStore>((set, get) => ({
             console.error(error);
             return null;
         }
+    },
+
+    mangaChapter: [],
+    getMangaChapter: async (manga, chapter) => {
+        try {
+            const res = await fetch(`/api/manga-details/${manga}/${chapter}`);
+            const data = await res.json();
+
+            if (!res.ok) {
+                console.error('Manga-list error');
+                return { error: true };
+            }
+
+            set({ mangaChapter: data });
+            return data;
+        } catch (error) {
+            console.error(error);
+            return null;
+        }
     }
+
+
 }));
 
 export default useMangaStore;
