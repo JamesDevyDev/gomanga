@@ -65,7 +65,7 @@ const MangaList = ({ page }: { page: string }) => {
             </div>
 
             {/* Pagination */}
-            <div className="w-full h-[60px] flex gap-1 sm:gap-2 items-center justify-end px-2 sm:px-[50px] font-bold">
+            <div className="w-full h-[60px] flex gap-1 sm:gap-2 items-center justify-end  px-[50px] font-bold">
                 {pagination.map((p, index) => {
                     const isCurrent = Number(p) === Number(page);
                     return (
