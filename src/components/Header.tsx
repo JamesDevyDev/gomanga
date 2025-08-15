@@ -11,13 +11,13 @@ const Header = () => {
 
     return (
         <div className="w-[100vw] h-[150px] overflow-hidden relative bg-red-700">
-            <div className='w-full h-[100%] absolute z-[5] bg-red-700/20 flex items-center justify-start px-[50px]'>
-                <Link href='/'>
-                    <img src='/header/logo.png' className='w-[100px] h-[100px]' />
-                </Link>
+            <div className='w-full h-[100%] absolute z-[5] bg-red-700/20 flex '>
 
                 {/* navbar */}
                 <div className=' w-[100%] h-[100%] px-[50px] flex items-center justify-start'>
+                    <Link href='/' className='mr-[30px]'>
+                        <img src='/header/logo.png' className='w-[100px] h-[100px]' />
+                    </Link>
 
                     <Link
                         href="/manga-list/1"
