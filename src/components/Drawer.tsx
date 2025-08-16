@@ -10,7 +10,7 @@ const DrawerStyle = () => {
     };
 
     return (
-        <div className="drawer">
+        <div className="drawer z-[50]">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex items-center justify-center min-h-screen">
                 {/* Page content here */}

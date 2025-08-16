@@ -54,7 +54,7 @@ const Header = () => {
                             <img src='/header/logo.png' className='w-[100px] h-[100px]' />
                         </Link>
 
-                        <div>
+                        <div className='z-[50]'>
                             <Drawer />
                         </div>
                     </div>
