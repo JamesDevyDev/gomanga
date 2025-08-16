@@ -9,7 +9,9 @@ export default function HomeLayout({
     return (
         <div className='overflow-x-hidden'>
             <Header />
+            <div className='z-[-50]'>
             {children}
+            </div>
             <Footer />
         </div>
     );
