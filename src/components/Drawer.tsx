@@ -16,7 +16,7 @@ const DrawerStyle = () => {
                 {/* Page content here */}
                 <label
                     htmlFor="my-drawer"
-                    className="btn border-none  bg-red-700/50 drawer-button text-white flex items-center gap-2"
+                    className="btn border-none  bg-red-700/50 drawer-button text-white flex items-center gap-2 "
                 >
                     <Menu className="w-6 h-6" />
                 </label>
@@ -25,10 +25,10 @@ const DrawerStyle = () => {
                 <label
                     htmlFor="my-drawer"
                     aria-label="close sidebar"
-                    className="drawer-overlay backdrop-blur-sm bg-black/40"
+                    className="drawer-overlay backdrop-blur-sm bg-black/40 "
                 ></label>
 
-                <div className="min-h-full w-[100%] p-6 text-white relative">
+                <div className="min-h-full w-[100%] p-6 text-white relative z-[50]">
                     <div className="absolute inset-0 bg-gradient-to-br from-black via-red-900/70 to-red-800 opacity-95" />
 
                     <label
