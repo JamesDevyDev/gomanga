@@ -93,7 +93,7 @@ const GenreComp = () => {
 
                     {/* ✅ Pagination */}
                     {genreManga?.pagination && genreManga?.pagination.length > 0 && (
-                        <div className="w-full h-[60px] flex gap-1 sm:gap-2 items-center justify-center px-[50px] font-bold mt-6">
+                        <div className="w-full h-[60px] flex gap-1 sm:gap-2 items-center justify-center px-[50px] font-bold mb-[20px]">
                             {genreManga.pagination.map((p: number, index: number) => {
                                 const isCurrent = Number(p) === Number(genreManga.page)
                                 return (
