@@ -7,19 +7,22 @@ import Link from 'next/link'
 const GenreComp = () => {
     const { genres, getMangaGenres, setMangaGenres, genreManga } = useMangaStore()
     const [loading, setLoading] = useState(false)
+    const [loadingGenres, setLoadingGenres] = useState(true)
     const skeletonCount = 24
+    const genreSkeletonCount = 100 // number of skeleton genre boxes to show
 
     useEffect(() => {
-        getMangaGenres()
+        const fetchGenres = async () => {
+            setLoadingGenres(true)
+            await getMangaGenres()
+            setLoadingGenres(false)
+        }
+        fetchGenres()
     }, [getMangaGenres])
-
-    useEffect(() => {
-        console.log("📌 genreManga changed:", genreManga)
-    }, [genreManga])
 
     const handleGenreClick = async (genre: string) => {
         setLoading(true)
-        await setMangaGenres(genre, "1") // always reset to page 1 when switching genre
+        await setMangaGenres(genre, "1") 
         setLoading(false)
     }
 
@@ -27,6 +30,7 @@ const GenreComp = () => {
         setLoading(true)
         await setMangaGenres(genre, String(page))
         setLoading(false)
+        window.scrollTo({ top: 0, behavior: "smooth" })
     }
 
     return (
@@ -84,13 +88,10 @@ const GenreComp = () => {
                                 </Link>
                             ))}
                     </div>
-
-
                 </div>
 
-                {/* Right Side (Genres) */}
+                {/* Right Side (Genres + Pagination) */}
                 <div className="w-full md:w-[30%] p-4 overflow-y-auto md:min-h-[100vh]">
-
                     {/* ✅ Pagination */}
                     {genreManga?.pagination && genreManga?.pagination.length > 0 && (
                         <div className="w-full h-[60px] flex gap-1 sm:gap-2 items-center justify-center px-[50px] font-bold mb-[20px]">
@@ -115,20 +116,28 @@ const GenreComp = () => {
                         </div>
                     )}
 
+                    {/* ✅ Genre list / Skeleton */}
                     <div className="grid gap-2 grid-cols-[repeat(auto-fit,minmax(100px,1fr))]">
-                        {genres?.map((genre: any, index: number) => (
-                            <div
-                                key={index}
-                                className="h-[35px] bg-gradient-to-br from-red-700/50 to-black 
-                  flex items-center justify-center rounded text-white 
-                  text-[11px] font-medium shadow-md 
-                  transition-colors duration-300 ease-in-out 
-                  hover:from-red-700 hover:to-red-700 cursor-pointer"
-                                onClick={() => handleGenreClick(genre)}
-                            >
-                                {genre}
-                            </div>
-                        ))}
+                        {loadingGenres
+                            ? Array.from({ length: genreSkeletonCount }).map((_, i) => (
+                                <div
+                                    key={i}
+                                    className="h-[35px] bg-gray-700/50 animate-pulse rounded"
+                                ></div>
+                            ))
+                            : genres?.map((genre: any, index: number) => (
+                                <div
+                                    key={index}
+                                    className="h-[35px] bg-gradient-to-br from-red-700/50 to-black 
+                      flex items-center justify-center rounded text-white 
+                      text-[11px] font-medium shadow-md 
+                      transition-colors duration-300 ease-in-out 
+                      hover:from-red-700 hover:to-red-700 cursor-pointer"
+                                    onClick={() => handleGenreClick(genre)}
+                                >
+                                    {genre}
+                                </div>
+                            ))}
                     </div>
                 </div>
             </div>

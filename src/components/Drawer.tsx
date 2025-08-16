@@ -42,14 +42,14 @@ const DrawerStyle = () => {
                         <Link
                             href="/manga-list/1"
                             onClick={closeDrawer}
-                            className="p-[25px] font-bold text-[20px] flex items-center justify-center"
+                            className="p-[25px] font-bold text-[20px] flex items-center justify-start"
                         >
                             Manga List
                         </Link>
                         <Link
                             href="/genre"
                             onClick={closeDrawer}
-                            className="p-[25px] font-bold text-[20px] flex items-center justify-center"
+                            className="p-[25px] font-bold text-[20px] flex items-center justify-start"
                         >
                             Genre
                         </Link>
