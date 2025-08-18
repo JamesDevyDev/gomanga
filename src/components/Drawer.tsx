@@ -21,7 +21,7 @@ const DrawerStyle = () => {
                     <Menu className="w-6 h-6" />
                 </label>
             </div>
-            <div className="drawer-side z-[50]">
+            <div className="drawer-side fixed inset-0 z-[9999]">
                 <label
                     htmlFor="my-drawer"
                     aria-label="close sidebar"
