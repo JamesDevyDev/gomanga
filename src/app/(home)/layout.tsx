@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import Drawer from "@/components/Drawer"
 
 export default function HomeLayout({
     children,
