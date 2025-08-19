@@ -13,11 +13,11 @@ const Header = () => {
     return (
         <div>
 
-            <div className="w-[100vw] h-[150px] overflow-hidden relative  ">
+            <div className="w-[100vw] h-[150px] overflow-hidden relative bg-red-700 ">
 
-                {/* <div className='w-full h-[100%] absolute z-[5] bg-red-700/20 flex '>
+                <div className='w-full h-[100%] relative z-[5]  flex '>
 
-                    BIG SCREEN
+                    {/* BIG SCREEN */}
                     <div className=' w-[100%] h-[100%] px-[50px] items-center justify-start hidden md:flex'>
                         <Link href='/' className='mr-[30px]'>
                             <img src='/header/logo.png' className='w-[100px] h-[100px]' />
@@ -48,19 +48,7 @@ const Header = () => {
 
                     </div>
 
-                    SMALL SCREEN
-                    <div className='w-[100%] h-[100%] px-[50px] flex md:hidden items-center justify-between '>
-                        <Link href='/' className='mr-[30px]'>
-                            <img src='/header/logo.png' className='w-[100px] h-[100px]' />
-                        </Link>
-
-                        <div>
-                            <Drawer />
-                        </div>
-                    </div>
-                </div> */}
-                <div className='w-full h-[100%] relative z-[5]  flex '>
-
+                    {/* SMALL SCREEN */}
                     <div className='w-[100%] h-[100%] px-[50px] flex md:hidden items-center justify-between '>
                         <Link href='/' className='mr-[30px]'>
                             <img src='/header/logo.png' className='w-[100px] h-[100px]' />
@@ -71,7 +59,7 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
-
+            
                 <div className='absolute  left-0 top-0'>
                     <Marquee gradient={false} speed={40}>
                         <img
