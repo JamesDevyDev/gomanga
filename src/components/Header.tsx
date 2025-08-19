@@ -59,8 +59,18 @@ const Header = () => {
                         </div>
                     </div>
                 </div> */}
-                
-                <Drawer></Drawer>
+                <div className='w-full h-[100%] absolute z-[5] bg-red-700/20 flex '>
+
+                    <div className='w-[100%] h-[100%] px-[50px] flex md:hidden items-center justify-between '>
+                        <Link href='/' className='mr-[30px]'>
+                            <img src='/header/logo.png' className='w-[100px] h-[100px]' />
+                        </Link>
+
+                        <div>
+                            <Drawer />
+                        </div>
+                    </div>
+                </div>
 
                 <div className='absolute '>
                     <Marquee gradient={false} speed={40}>
