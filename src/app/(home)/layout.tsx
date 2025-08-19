@@ -7,7 +7,7 @@ export default function HomeLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <div className='overflow-x-hidden relative'>
+        <div className='overflow-x-hidden w-[100vw] h-[100vh] relative'>
             <Header />
             <div className="relative z-0">
                 {children}
