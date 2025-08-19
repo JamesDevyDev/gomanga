@@ -1,6 +1,5 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import Drawer from "@/components/Drawer"
 
 export default function HomeLayout({
     children,
@@ -10,9 +9,7 @@ export default function HomeLayout({
     return (
         <div className='overflow-x-hidden w-[100vw] h-[100vh] relative'>
             <Header />
-            <div className="relative z-0">
-                {children}
-            </div>
+            {children}
             <Footer />
         </div>
     );

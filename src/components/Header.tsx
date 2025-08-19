@@ -15,9 +15,9 @@ const Header = () => {
 
             <div className="w-[100vw] h-[150px] overflow-hidden relative bg-red-700 ">
 
-                <div className='w-full h-[100%] absolute z-[5] bg-red-700/20 flex '>
+                {/* <div className='w-full h-[100%] absolute z-[5] bg-red-700/20 flex '>
 
-                    {/* BIG SCREEN */}
+                    BIG SCREEN
                     <div className=' w-[100%] h-[100%] px-[50px] items-center justify-start hidden md:flex'>
                         <Link href='/' className='mr-[30px]'>
                             <img src='/header/logo.png' className='w-[100px] h-[100px]' />
@@ -48,17 +48,19 @@ const Header = () => {
 
                     </div>
 
-                    {/* SMALL SCREEN */}
+                    SMALL SCREEN
                     <div className='w-[100%] h-[100%] px-[50px] flex md:hidden items-center justify-between '>
                         <Link href='/' className='mr-[30px]'>
                             <img src='/header/logo.png' className='w-[100px] h-[100px]' />
                         </Link>
 
-                        <div className='z-[50] relative'>
+                        <div>
                             <Drawer />
                         </div>
                     </div>
-                </div>
+                </div> */}
+                
+                <Drawer></Drawer>
 
                 <div className='absolute '>
                     <Marquee gradient={false} speed={40}>
