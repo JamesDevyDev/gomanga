@@ -69,7 +69,7 @@ const useMangaStore = create<MangaStore>((set, get) => ({
             const data = await res.json();
 
             if (!res.ok) {
-                console.error('Manga-list error');
+                // console.error('Manga-list error');
                 return { error: true };
             }
 

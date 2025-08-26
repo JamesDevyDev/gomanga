@@ -2,21 +2,29 @@
 
 import useMangaStore from "@/zustand/useMangaStore"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 const MangaChapterComp = ({ manga, chapter }: { manga: string, chapter: string }) => {
-    const { mangaChapter, getMangaChapter } = useMangaStore()
+    const { mangaChapter, getMangaChapter, mangaDetails } = useMangaStore()
     const [loading, setLoading] = useState(true)
+    const router = useRouter()
 
     useEffect(() => {
         setLoading(true)
-        getMangaChapter(manga, chapter).finally(() => {
+        getMangaChapter(manga, chapter).then((data) => {
+            if (!data || data.error) {
+
+                router.push(`/manga-details/${manga}`)
+            }
+        }).finally(() => {
             setLoading(false)
         })
-    }, [manga, chapter, getMangaChapter])
+    }, [manga, chapter, getMangaChapter, router])
 
     return (
         <div className="bg-neutral-900 w-[100vw] overflow md:px-[50px] py-[50px]">
-            <div className='text-white font-bold text-[20px]'>
+            <div className="text-white font-bold text-[20px]">
                 {loading ? (
                     <div className="skeleton h-6 w-40"></div>
                 ) : (
@@ -24,7 +32,7 @@ const MangaChapterComp = ({ manga, chapter }: { manga: string, chapter: string }
                 )}
             </div>
 
-            <div className='flex items-center justify-center flex-col mt-5'>
+            <div className="flex items-center justify-center flex-col mt-5">
                 {loading ? (
                     Array.from({ length: 5 }).map((_, idx) => (
                         <div
@@ -38,11 +46,23 @@ const MangaChapterComp = ({ manga, chapter }: { manga: string, chapter: string }
                             key={index}
                             src={url}
                             alt={`Page ${index + 1}`}
-                            className="w-full w-[100%] md:max-w-[800px] "
+                            className="w-full md:max-w-[800px]"
                         />
                     ))
                 )}
             </div>
+
+            <div className="w-full flex items-center justify-center">
+                <div className='w-[800px] h-[50px]'>
+                    <div className="join grid grid-cols-2 pt-[50px]">
+                        <Link href={`/manga-details/${manga}/${Number(chapter) - 1}`} className="join-item btn bg-[#b91c1c] text-black">Previous page</Link>
+                        <Link href={`/manga-details/${manga}/${Number(chapter) + 1}`} className="join-item btn bg-[#b91c1c] text-black">Next</Link>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
     )
 }
