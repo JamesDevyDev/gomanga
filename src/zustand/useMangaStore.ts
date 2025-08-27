@@ -17,6 +17,9 @@ interface MangaStore {
 
     genreManga: any;
     setMangaGenres: (genre: string, page: string) => Promise<any>
+
+    searchManga: any;
+    setSearchManga: (search: string) => Promise<any>
 }
 
 const useMangaStore = create<MangaStore>((set, get) => ({
@@ -111,8 +114,27 @@ const useMangaStore = create<MangaStore>((set, get) => ({
                 console.error('Manga-list error');
                 return { error: true };
             }
-      
+
             set({ genreManga: data });
+            return data;
+        } catch (error) {
+            console.error(error);
+            return null;
+        }
+    },
+
+    searchManga: [],
+    setSearchManga: async (search) => {
+        try {
+            const res = await fetch(`/api/search/${search}`);
+            const data = await res.json();
+
+            if (!res.ok) {
+                console.error('Manga-list error');
+                return { error: true };
+            }
+
+            set({ searchManga: data });
             return data;
         } catch (error) {
             console.error(error);
