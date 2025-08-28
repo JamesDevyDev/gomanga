@@ -24,7 +24,7 @@ const MangaChapterComp = ({ manga, chapter }: { manga: string, chapter: string }
 
     return (
         <div className="bg-neutral-900 w-[100vw] overflow md:px-[50px] py-[50px]">
-            <div className="text-white font-bold text-[20px]">
+            <div className="text-white font-bold text-[20px] px-[20px] md:px-[0]">
                 {loading ? (
                     <div className="skeleton h-6 w-40"></div>
                 ) : (
@@ -47,6 +47,7 @@ const MangaChapterComp = ({ manga, chapter }: { manga: string, chapter: string }
                             src={url}
                             alt={`Page ${index + 1}`}
                             className="w-full md:max-w-[800px]"
+                            loading="lazy"   // 👈 enables lazy loading
                         />
                     ))
                 )}
