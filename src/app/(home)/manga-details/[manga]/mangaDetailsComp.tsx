@@ -4,10 +4,10 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import useMangaStore from '@/zustand/useMangaStore'
 
-
 const MangaDetails = ({ manga }: { manga: string }) => {
     const { getMangaDetails, mangaDetails } = useMangaStore()
     const [loading, setLoading] = useState(true)
+    const [reverseOrder, setReverseOrder] = useState(true) // 🔥 new state
 
     useEffect(() => {
         setLoading(true)
@@ -17,31 +17,47 @@ const MangaDetails = ({ manga }: { manga: string }) => {
     const latestChapter = mangaDetails?.chapters?.[0]
     const oldestChapter = mangaDetails?.chapters?.[mangaDetails?.chapters?.length - 1]
 
+    // handle toggle
+    const toggleOrder = () => setReverseOrder((prev) => !prev)
+
     return (
         <div className="bg-neutral-900 w-[100vw] overflow px-[50px] py-[50px]">
-            <div className='flex items-center justify-between flex-col lg:flex-row'>
 
-                <div className='w-[270px] h-[320px]'>
+            {/* Banner + info */}
+            <div className="relative flex items-center justify-between flex-col lg:flex-row h-auto ">
+
+                {/* Banner */}
+                <div className="absolute left-[-50px] right-[-50px] top-0 bottom-0 my-[-25px] overflow-hidden">
+                    <img
+                        src={mangaDetails?.imageUrl}
+                        alt="Manga Background"
+                        className="w-full h-full object-cover opacity-70 blur-lg"
+                    />
+                    <div className="absolute inset-0 bg-black/30"></div>
+                </div>
+
+                {/* Poster */}
+                <div className="w-[270px] h-[320px] z-10">
                     {loading ? (
                         <div className="skeleton rounded-none w-full h-full"></div>
                     ) : (
-                        <img src={mangaDetails?.imageUrl} className='w-full h-full' />
+                        <img src={mangaDetails?.imageUrl} className="w-full h-full" />
                     )}
                 </div>
 
-                <div className='h-[320px] w-full mt-[50px] lg:mt-[0px] pl-[0px] lg:pl-[50px]'>
-
+                {/* Details */}
+                <div className="w-full mt-[50px] lg:mt-0 pl-0 lg:pl-[50px] z-10">
                     {loading ? (
                         <div className="skeleton rounded-none h-[100px] w-full rounded-xl"></div>
                     ) : (
-                        <div className="h-[100px] bg-gradient-to-r from-black to-transparent text-white font-bold text-[25px] flex items-center justify-center rounded-xl relative">
+                        <div className="h-[100px] bg-gradient-to-r from-black to-transparent text-white font-bold text-xl md:text-[32px] flex items-center justify-center rounded-xl relative">
                             {mangaDetails?.title}
                         </div>
                     )}
 
-                    <div className='w-full h-[100%] relative'>
-                        <div className='font-bold text-white py-[20px] text-[15px]'>INFORMATION</div>
-                        <div className='w-[100%] h-[1px] bg-gray-500 mb-4'></div>
+                    <div className="w-full h-full relative">
+                        <div className="font-bold text-white py-[20px] text-[15px]">INFORMATION</div>
+                        <div className="w-full h-[1px] bg-gray-500 mb-4"></div>
 
                         {loading ? (
                             <div className="space-y-2">
@@ -50,7 +66,7 @@ const MangaDetails = ({ manga }: { manga: string }) => {
                                 ))}
                             </div>
                         ) : (
-                            <div className='text-neutral-400 text-sm space-y-1'>
+                            <div className="text-neutral-400 text-sm space-y-1">
                                 <p><span className="font-bold text-white">Author:</span> {mangaDetails?.author}</p>
                                 <p><span className="font-bold text-white">Status:</span> {mangaDetails?.status}</p>
                                 <p><span className="font-bold text-white">Last Updated:</span> {mangaDetails?.lastUpdated}</p>
@@ -63,42 +79,55 @@ const MangaDetails = ({ manga }: { manga: string }) => {
                 </div>
             </div>
 
-            <div className='w-full min-h-[50vh] mt-[50px]'>
-                <div className="flex justify-between items-center mb-4">
-                    <h2 className='text-white text-xl font-bold'>Chapters</h2>
+
+            {/* Chapters */}
+            <div className="w-full min-h-[50vh] mt-[50px]">
+                <div className="flex justify-between items-end flex-col gap-4 mb-4">
                     {!loading && mangaDetails?.chapters?.length > 0 && (
                         <div className="flex gap-2">
+
                             <Link
                                 href={`/manga-details/${manga}/${latestChapter?.chapterId}`}
-                                className="cursor-pointer bg-red-500 hover:bg-red-700 px-4 py-2  text-white text-sm font-bold relative z-50"
+                                className="cursor-pointer bg-red-500 hover:bg-red-700 px-4 py-1 md:py-2 text-white md:text-sm font-bold relative z-50"
                             >
                                 Read Latest
                             </Link>
                             <Link
                                 href={`/manga-details/${manga}/${oldestChapter?.chapterId}`}
-                                className="cursor-pointer bg-red-500 hover:bg-red-700 px-4 py-2  text-white text-sm font-bold relative z-50"
+                                className="cursor-pointer bg-red-500 hover:bg-red-700 px-4 py-1 md:py-2 text-white md:text-sm font-bold relative z-50"
                             >
                                 Read Oldest
                             </Link>
                         </div>
                     )}
+
+                    <h2 className="text-white text-xl font-bold">Chapters</h2>
+                    <button
+                        onClick={toggleOrder}
+                        className="cursor-pointer bg-red-400 hover:bg-red-500 px-4 py-1 md:py-2 text-white text-sm font-bold relative z-50"
+                    >
+                        {reverseOrder ? 'Reverse Order' : 'Undo reverse order'}
+                    </button>
                 </div>
 
                 {loading ? (
-                    <div className="space-y-3">
-                        {Array.from({ length: 5 }).map((_, idx) => (
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                        {Array.from({ length: 6 }).map((_, idx) => (
                             <div key={idx} className="skeleton rounded-none h-12 w-full"></div>
                         ))}
                     </div>
                 ) : (
-                    <div className="flex flex-col space-y-3">
-                        {mangaDetails?.chapters?.map((chapter: any) => (
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                        {(reverseOrder
+                            ? [...mangaDetails?.chapters].reverse()
+                            : mangaDetails?.chapters
+                        ).map((chapter: any) => (
                             <Link
                                 href={`/manga-details/${manga}/${chapter?.chapterId}`}
                                 key={chapter.chapterId}
-                                className="bg-neutral-800 hover:bg-neutral-700 transition-colors p-3  text-white flex justify-between items-center"
+                                className="bg-neutral-800 hover:bg-neutral-700 transition-colors p-3 text-white flex justify-between items-center"
                             >
-                                <span className='font-bold'>Chapter {chapter.chapterId}</span>
+                                <span className="font-bold">Chapter {chapter.chapterId}</span>
                                 <div className="text-sm text-gray-400">
                                     {chapter.uploaded} • {chapter.views} views
                                 </div>
