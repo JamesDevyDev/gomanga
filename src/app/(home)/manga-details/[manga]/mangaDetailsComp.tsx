@@ -21,13 +21,13 @@ const MangaDetails = ({ manga }: { manga: string }) => {
     const toggleOrder = () => setReverseOrder((prev) => !prev)
 
     return (
-        <div className="bg-neutral-900 w-[100vw] overflow px-[50px] py-[50px]">
+        <div className="bg-neutral-900 w-[100vw] overflow px-[50px] md:px-[150px] py-[50px]">
 
             {/* Banner + info */}
             <div className="relative flex items-center justify-between flex-col lg:flex-row h-auto ">
 
                 {/* Banner */}
-                <div className="absolute left-[-50px] right-[-50px] top-0 bottom-0 my-[-25px] overflow-hidden">
+                <div className="absolute left-[-150px] right-[-150px] top-0 bottom-0 my-[-25px] overflow-hidden">
                     <img
                         src={mangaDetails?.imageUrl}
                         alt="Manga Background"

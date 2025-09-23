@@ -24,9 +24,9 @@ const Header = () => {
     return (
         <div>
             <div className="w-[100vw] h-[150px] overflow-hidden relative bg-red-700/5">
-                <div className="w-full h-full flex items-center justify-between px-[50px]">
+                <div className="w-full h-full flex items-center justify-between px-[50px] md:px-[150px]">
                     {/* Large screen */}
-                    <div className="w-[100%] h-[100%] items-center justify-start hidden md:flex z-[50]">
+                    {/* <div className="w-[100%] h-[100%] items-center justify-start hidden md:flex z-[50]">
                         <Link href="/" className="mr-[30px]">
                             <img src="/header/logo.png" className="w-[100px] h-[100px]" />
                         </Link>
@@ -62,10 +62,10 @@ const Header = () => {
                                     } absolute bottom-0 w-full h-[6.5px] transition-colors duration-100 group-hover:bg-yellow-500`}
                             ></div>
                         </Link>
-                    </div>
+                    </div> */}
 
                     {/* Fixed search bar */}
-                    <form className="hidden md:flex items-center relative" onSubmit={(e) => {
+                    {/* <form className="hidden md:flex items-center relative" onSubmit={(e) => {
                         e.preventDefault()
                         searchFunction()
                     }}>
@@ -79,10 +79,10 @@ const Header = () => {
                         <button className="absolute right-2 cursor-pointer" type="submit">
                             <Search size={22} className="text-white" />
                         </button>
-                    </form>
+                    </form> */}
 
                     {/* Small screen */}
-                    <div className="w-[100%] h-[100%] flex md:hidden items-center justify-between z-[50]">
+                    <div className="w-[100%] h-[100%] flex  items-center justify-between z-[50]">
                         <Link href="/" className="mr-[30px]">
                             <img src="/header/logo.png" className="w-[100px] h-[100px]" />
                         </Link>

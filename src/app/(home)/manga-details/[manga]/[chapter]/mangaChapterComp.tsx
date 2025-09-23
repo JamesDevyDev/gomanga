@@ -23,8 +23,9 @@ const MangaChapterComp = ({ manga, chapter }: { manga: string, chapter: string }
     }, [manga, chapter, getMangaChapter, router])
 
     return (
-        <div className="bg-neutral-900 w-[100vw] overflow md:px-[50px] py-[50px]">
-            <div className="text-white font-bold text-[20px] px-[20px] md:px-[0]">
+        <div className="bg-neutral-900 w-[100vw] overflow md:px-[150px] py-[50px]">
+            {/* <div className="text-white font-bold text-xl px-[20px] md:px-[0]"> */}
+            <div className="h-[100px] bg-gradient-to-r from-black to-transparent text-white font-bold text-xl md:text-[32px] flex items-center justify-center rounded-xl relative">
                 {loading ? (
                     <div className="skeleton h-6 w-40"></div>
                 ) : (

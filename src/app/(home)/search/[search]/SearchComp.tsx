@@ -18,7 +18,7 @@ const SearchComp = ({ search }: { search: string }) => {
     return (
         <div className="bg-neutral-900 w-[100vw] overflow">
             {/* Header */}
-            <div className="bg-black text-white font-bold h-[50px] flex items-center justify-start p-[50px] text-[30px]">
+            <div className="bg-black text-white font-bold h-[50px] flex items-center justify-start p-[50px] md:px-[150px] text-[30px]">
                 <div>
                     Search  : <span className="text-red-700">{readableSearch}</span>
                 </div>
@@ -26,7 +26,7 @@ const SearchComp = ({ search }: { search: string }) => {
 
             {/* Grid */}
             <div
-                className={`w-full px-[50px] min-h-[100vh] py-[50px] gap-4 
+                className={`w-full px-[50px] md:px-[150px] min-h-[100vh] py-[50px] gap-4 
                     grid 
                     grid-cols-2 
                     sm:grid-cols-3

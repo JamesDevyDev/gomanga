@@ -47,13 +47,13 @@ const GenreComp = () => {
     return (
         <div className="bg-neutral-900 w-full text-red-500">
             {/* Header */}
-            <div className="bg-black text-white font-bold h-[50px] flex items-center justify-start p-[50px] text-[30px]">
+            <div className="bg-black text-white font-bold h-[50px] flex items-center justify-start p-[50px] md:px-[150px] text-[30px]">
                 Genre : <span className='text-red-700'> {genreManga?.genre || "Select a genre"}</span>
             </div>
 
             <div className="w-full flex flex-col md:flex-row">
                 {/* Left Side (Manga grid) */}
-                <div className="w-full md:w-[70%] px-[30px] py-[30px]">
+                <div className="w-full md:w-[70%] px-[30px] md:px-[150px]  py-[30px]">
                     <div
                         className={`w-full gap-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5`}
                     >
@@ -94,7 +94,7 @@ const GenreComp = () => {
                 </div>
 
                 {/* Right Side (Static Genres + Pagination) */}
-                <div className="w-full md:w-[30%] p-4 overflow-y-auto md:min-h-[100vh]">
+                <div className="w-full md:w-[30%] p-4  overflow-y-auto md:min-h-[100vh]">
                     {/* Pagination */}
                     {genreManga?.pagination && genreManga?.pagination.length > 0 && (
                         <div className="w-full h-[60px] flex gap-1 sm:gap-2 items-center justify-center px-[50px] font-bold mb-[20px]">
@@ -119,7 +119,7 @@ const GenreComp = () => {
                     )}
 
                     {/* Static Genres */}
-                    <div className="grid gap-2 grid-cols-[repeat(auto-fit,minmax(100px,1fr))]">
+                    <div className="grid  gap-2 grid-cols-[repeat(auto-fit,minmax(100px,1fr))]">
                         {staticGenres.map((genre, index) => (
                             <div
                                 key={index}

@@ -16,13 +16,13 @@ const MangaList = ({ page }: { page: string }) => {
     return (
         <div className="bg-neutral-900 w-[100vw] overflow">
             {/* Header */}
-            <div className="bg-black text-white font-bold h-[50px] flex items-center justify-start p-[50px] text-[30px]">
+            <div className="bg-black text-white font-bold h-[50px] flex items-center justify-start p-[50px] text-[30px] md:px-[150px]">
                 <div>Manga list <span className='text-red-700'> {page}</span></div>
             </div>
 
             {/* Grid */}
             <div
-                className={`w-full px-[50px] min-h-[100vh] py-[50px] gap-4 
+                className={`w-full px-[50px] md:px-[150px] min-h-[100vh] py-[50px] gap-4 
                     grid 
                     grid-cols-2 
                     sm:grid-cols-3
@@ -65,7 +65,7 @@ const MangaList = ({ page }: { page: string }) => {
             </div>
 
             {/* Pagination */}
-            <div className="w-full h-[60px] flex gap-1 sm:gap-2 items-center justify-end  px-[50px] font-bold">
+            <div className="w-full h-[60px] flex gap-1 sm:gap-2 items-center justify-end  px-[50px] md:px-[150px] font-bold">
                 {pagination.map((p, index) => {
                     const isCurrent = Number(p) === Number(page);
                     return (
