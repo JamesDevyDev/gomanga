@@ -17,6 +17,12 @@ interface MangaStore {
 
     searchManga: any;
     setSearchManga: (search: string) => Promise<any>
+
+    // For sites count
+    visitCount: number,
+    getVisitCount: () => void,
+    readCount: number,
+    getReadCount: () => void
 }
 
 const useMangaStore = create<MangaStore>((set, get) => ({
@@ -25,7 +31,7 @@ const useMangaStore = create<MangaStore>((set, get) => ({
 
     getMangaList: async (page) => {
         try {
-            const res = await fetch(`/api/manga-list/${page}`);
+            const res = await fetch(`/api/manga/manga-list/${page}`);
             const data = await res.json();
 
             if (!res.ok) {
@@ -46,7 +52,7 @@ const useMangaStore = create<MangaStore>((set, get) => ({
     mangaDetails: [],
     getMangaDetails: async (manga) => {
         try {
-            const res = await fetch(`/api/manga-details/${manga}`);
+            const res = await fetch(`/api/manga/manga-details/${manga}`);
             const data = await res.json();
 
             if (!res.ok) {
@@ -65,7 +71,7 @@ const useMangaStore = create<MangaStore>((set, get) => ({
     mangaChapter: [],
     getMangaChapter: async (manga, chapter) => {
         try {
-            const res = await fetch(`/api/manga-details/${manga}/${chapter}`);
+            const res = await fetch(`/api/manga/manga-details/${manga}/${chapter}`);
             const data = await res.json();
 
             if (!res.ok) {
@@ -84,7 +90,7 @@ const useMangaStore = create<MangaStore>((set, get) => ({
     genreManga: [],
     setMangaGenres: async (genre, page) => {
         try {
-            const res = await fetch(`/api/genre/${genre}/${page}`);
+            const res = await fetch(`/api/manga/genre/${genre}/${page}`);
             const data = await res.json();
 
             if (!res.ok) {
@@ -103,7 +109,7 @@ const useMangaStore = create<MangaStore>((set, get) => ({
     searchManga: [],
     setSearchManga: async (search) => {
         try {
-            const res = await fetch(`/api/search/${search}`);
+            const res = await fetch(`/api/manga/search/${search}`);
             const data = await res.json();
 
             if (!res.ok) {
@@ -118,6 +124,23 @@ const useMangaStore = create<MangaStore>((set, get) => ({
             return null;
         }
     },
+
+    // For sites count
+    visitCount: 0,
+    getVisitCount: async () => {
+        let res = await fetch('/api/site/count/visit')
+        if (!res.ok) throw new Error("Failed to fetch visit count");
+        let data = await res.json()
+        set({ visitCount: data })
+    },
+    readCount: 0,
+    getReadCount: async () => {
+        let res = await fetch('/api/site/count/read')
+        if (!res.ok) throw new Error("Failed to fetch read count");
+        let data = await res.json()
+        set({ readCount: data })
+    },
+
 
 }));
 

@@ -1,7 +1,29 @@
+'use client'
+
 import Link from "next/link";
+import { useEffect } from "react";
+import useMangaStore from "@/zustand/useMangaStore";
 
 export default function Home() {
+
+  const { getVisitCount } = useMangaStore()
+
+  // homepage add count
+  useEffect(() => {
+    let addVisitCount = async () => {
+      let res = await fetch('/api/site/count/visit', {
+        method: 'POST'
+      })
+    }
+    addVisitCount()
+    getVisitCount()
+  }, [])
+
   return (
+
+
+
+
     <div className="w-[100vw] h-[100vh] bg-white relative overflow-hidden">
       <img
         src="/landing_assets/imgbg.webp"

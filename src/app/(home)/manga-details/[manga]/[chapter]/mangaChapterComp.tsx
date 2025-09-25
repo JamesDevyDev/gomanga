@@ -6,9 +6,20 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 
 const MangaChapterComp = ({ manga, chapter }: { manga: string, chapter: string }) => {
-    const { mangaChapter, getMangaChapter, mangaDetails } = useMangaStore()
+    const { mangaChapter, getMangaChapter, mangaDetails, getReadCount } = useMangaStore()
     const [loading, setLoading] = useState(true)
     const router = useRouter()
+
+    // read add count
+    useEffect(() => {
+        let addReadCount = async () => {
+            let res = await fetch('/api/site/count/read', {
+                method: 'POST'
+            })
+        }
+        addReadCount()
+        getReadCount()
+    }, [])
 
     useEffect(() => {
         setLoading(true)
@@ -27,7 +38,7 @@ const MangaChapterComp = ({ manga, chapter }: { manga: string, chapter: string }
             {/* <div className="text-white font-bold text-xl px-[20px] md:px-[0]"> */}
             <div className="h-[100px] bg-gradient-to-r from-black to-transparent text-white font-bold text-xl md:text-[32px] flex items-center justify-center rounded-xl relative">
                 {loading ? (
-                    <div className="skeleton h-6 w-40"></div>
+                    <div className="skeleton h-[80%] w-[50%]"></div>
                 ) : (
                     mangaChapter?.title
                 )}
