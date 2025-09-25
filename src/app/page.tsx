@@ -43,11 +43,11 @@ export default function Home() {
           <img
             src="/landing_assets/logo.png"
             alt="Logo"
-            className="w-full h-auto object-contain relative opacity-0 animate-scale-up animation-delay-1600"
+            className="w-full h-auto object-contain relative opacity-0 animate-scale-up-logo animation-delay-1600"
           />
         </div>
 
-        <Link href='/manga-list/1' className="bg-black w-[80vw] max-w-[400px] h-[60px] sm:h-[80px] relative rounded-xl flex items-center justify-center cursor-pointer hover:scale-105 transition-transform duration-200 opacity-0 animate-scale-up animation-delay-1600">
+        <Link href='/manga-list/1' className="bg-black w-[80vw] max-w-[400px] h-[60px] sm:h-[80px] relative rounded-xl flex items-center justify-center cursor-pointer hover:scale-105 transition-transform duration-200 opacity-0 animate-scale-up-logo animation-delay-1600">
           <div className="w-[98%] h-[90%] bg-[#ED4301] rounded-xl flex items-center justify-center text-white font-bold text-[24px] sm:text-[40px] cursor-pointer">
             Start Reading
           </div>
