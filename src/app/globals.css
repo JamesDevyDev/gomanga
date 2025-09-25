@@ -56,3 +56,9 @@
 .animation-delay-1600 {
     animation-delay: 1.6s;
 }
+
+input,
+textarea,
+select {
+    -webkit-text-size-adjust: 100%;
+}
