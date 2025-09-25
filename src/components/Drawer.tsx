@@ -19,8 +19,8 @@ const DrawerStyle = () => {
         const fetchCounts = async () => {
             setIsLoadingViews(true);
             setIsLoadingReads(true);
-            getVisitCount();
-            getReadCount();
+            await getVisitCount();
+            await getReadCount();
             setIsLoadingViews(false);
             setIsLoadingReads(false);
         };
