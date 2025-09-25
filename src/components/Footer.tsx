@@ -14,7 +14,7 @@ const Footer = () => {
             <div className="w-full flex px-[50px] md:px-[150px] py-15 items-center justify-between ">
                 {/* Logo */}
                 <div className="h-[150px] w-[150px] flex-shrink-0">
-                    <Link href="/home/1">
+                    <Link href="/manga-list/1">
                         <img
                             src="/header/logo.png"
                             alt="GoManga Logo"
