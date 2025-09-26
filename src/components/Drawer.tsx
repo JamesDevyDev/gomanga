@@ -68,7 +68,7 @@ const DrawerStyle = () => {
                     {/* Gradient background */}
                     <div className="absolute inset-0 bg-gradient-to-br from-black via-red-900/70 to-red-800 opacity-95" />
 
-                    <Link href='/' className="relative w-[100%] flex items-center justify-center h-[100px]">
+                    <Link href='/manga-list/1' className="relative w-[100%] flex items-center justify-center h-[100px]">
                         <img src="/header/logo.png" className="w-[100px] h-[100px]" />
                     </Link>
 
@@ -192,10 +192,7 @@ const DrawerStyle = () => {
                                                 ? new Date(authUser.createdAt).toLocaleString("en-US", {
                                                     month: "short",
                                                     day: "numeric",
-                                                    year: "numeric",
-                                                    hour: "numeric",
-                                                    minute: "2-digit",
-                                                    hour12: true,
+                                                    year: "numeric",      
                                                 })
                                                 : ""}
                                         </p>
@@ -206,7 +203,7 @@ const DrawerStyle = () => {
                                     onClick={() => {
                                         LogoutFunction()
                                     }}
-                                    className="w-full h-[40px] flex items-center justify-center rounded-md bg-red-600 hover:bg-red-700 text-white font-semibold cursor-pointer"
+                                    className="bg-black/50 border border-gray-500 w-full h-[40px] flex items-center justify-center rounded-md bg-red-600 hover:bg-red-700 text-white font-semibold cursor-pointer"
                                 >
                                     Logout
                                 </button>

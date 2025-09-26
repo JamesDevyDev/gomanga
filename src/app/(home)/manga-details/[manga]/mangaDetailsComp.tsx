@@ -3,8 +3,12 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import useMangaStore from '@/zustand/useMangaStore'
+import useAuthStore from '@/zustand/useAuthStore'
 
 const MangaDetails = ({ manga }: { manga: string }) => {
+
+    const { authUser } = useAuthStore()
+
     const { getMangaDetails, mangaDetails } = useMangaStore()
     const [loading, setLoading] = useState(true)
     const [reverseOrder, setReverseOrder] = useState(true) // 🔥 new state
@@ -75,6 +79,9 @@ const MangaDetails = ({ manga }: { manga: string }) => {
                                 <p><span className="font-bold text-white">Rating:</span> {mangaDetails?.rating}</p>
                             </div>
                         )}
+
+                        {authUser && <div className='cursor-pointer bg-red-500 w-[150px] h-[50px] mt-5 rounded-xl text-white font-bold flex items-center justify-center'>Like Manga</div>
+                        }
                     </div>
                 </div>
             </div>

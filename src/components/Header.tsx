@@ -83,7 +83,7 @@ const Header = () => {
 
                     {/* Small screen */}
                     <div className="w-[100%] h-[100%] flex  items-center justify-between z-[50]">
-                        <Link href="/" className="mr-[30px]">
+                        <Link href="/manga-list/1" className="mr-[30px]">
                             <img src="/header/logo.png" className="w-[100px] h-[100px]" />
                         </Link>
                         <div>
