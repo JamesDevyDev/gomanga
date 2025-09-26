@@ -22,7 +22,7 @@ const Page = () => {
             setError(data?.error)
             return
         }
-        router.push('/manga-list/1')
+        router.back()
     }
 
     return (

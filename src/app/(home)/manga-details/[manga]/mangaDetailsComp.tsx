@@ -5,13 +5,19 @@ import Link from 'next/link'
 import useMangaStore from '@/zustand/useMangaStore'
 import useAuthStore from '@/zustand/useAuthStore'
 
+import { Heart, HeartOff } from 'lucide-react'
+
+
 const MangaDetails = ({ manga }: { manga: string }) => {
 
-    const { authUser } = useAuthStore()
+    const { authUser, getAuthUserFunction } = useAuthStore()
 
     const { getMangaDetails, mangaDetails } = useMangaStore()
     const [loading, setLoading] = useState(true)
     const [reverseOrder, setReverseOrder] = useState(true) // 🔥 new state
+
+    const [isLiking, setIsLiking] = useState(false)
+
 
     useEffect(() => {
         setLoading(true)
@@ -24,6 +30,22 @@ const MangaDetails = ({ manga }: { manga: string }) => {
     // handle toggle
     const toggleOrder = () => setReverseOrder((prev) => !prev)
 
+    //If the user is authenticated, He can see the Like Manga
+    const likeManga = async () => {
+        try {
+            let res = await fetch('/api/site/LikeManga', {
+                method: "POST",
+                body: JSON.stringify({ mangaId: mangaDetails?.id, image: mangaDetails?.imageUrl })
+            })
+            let data = await res.json()
+
+            //Call tong function na to, para parang real time nagbabago data, pero ni rerefetch lang yung current state nung authUser
+            getAuthUserFunction()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <div className="bg-neutral-900 w-[100vw] overflow px-[50px] md:px-[150px] py-[50px]">
 
@@ -32,13 +54,20 @@ const MangaDetails = ({ manga }: { manga: string }) => {
 
                 {/* Banner */}
                 <div className="absolute left-[-150px] right-[-150px] top-0 bottom-0 my-[-25px] overflow-hidden">
-                    <img
-                        src={mangaDetails?.imageUrl}
-                        alt="Manga Background"
-                        className="w-full h-full object-cover opacity-70 blur-lg"
-                    />
-                    <div className="absolute inset-0 bg-black/30"></div>
+                    {loading ? (
+                        <div className=" w-full h-full"></div>
+                    ) : (
+                        <>
+                            <img
+                                src={mangaDetails?.imageUrl}
+                                alt="Manga Background"
+                                className="w-full h-full object-cover opacity-70 blur-lg"
+                            />
+                            <div className="absolute inset-0 bg-black/30"></div>
+                        </>
+                    )}
                 </div>
+
 
                 {/* Poster */}
                 <div className="w-[270px] h-[320px] z-10">
@@ -80,8 +109,43 @@ const MangaDetails = ({ manga }: { manga: string }) => {
                             </div>
                         )}
 
-                        {authUser && <div className='cursor-pointer bg-red-500 w-[150px] h-[50px] mt-5 rounded-xl text-white font-bold flex items-center justify-center'>Like Manga</div>
-                        }
+                        {!loading && authUser && (
+                            <button
+                                onClick={async () => {
+                                    if (isLiking) return // prevent spam clicks
+                                    setIsLiking(true)
+                                    try {
+                                        await likeManga()
+                                    } finally {
+                                        setIsLiking(false)
+                                    }
+                                }}
+                                disabled={isLiking} // disable button
+                                className={`mt-5 duration-200 p-[8px] w-[200px] cursor-pointer rounded-lg font-bold text-gray-900 flex items-center justify-center gap-[5px]
+      ${isLiking
+                                        ? "bg-gray-400 cursor-not-allowed"
+                                        : authUser.likedManga?.some((item: any) => item.MangaId === manga)
+                                            ? "bg-gray-500 hover:bg-gray-500/80"
+                                            : "bg-red-500 hover:bg-red-500/80"
+                                    }`}
+                            >
+                                {isLiking ? (
+                                    <>
+                                        <span className="loading loading-spinner loading-sm"></span>
+                                        Processing...
+                                    </>
+                                ) : authUser.likedManga?.some((item: any) => item.MangaId === manga) ? (
+                                    <>
+                                        Unlike Manga <HeartOff className="w-5 h-5" />
+                                    </>
+                                ) : (
+                                    <>
+                                        Like Manga <Heart className="w-5 h-5" />
+                                    </>
+                                )}
+                            </button>
+                        )}
+
                     </div>
                 </div>
             </div>
@@ -95,13 +159,13 @@ const MangaDetails = ({ manga }: { manga: string }) => {
 
                             <Link
                                 href={`/manga-details/${manga}/${latestChapter?.chapterId}`}
-                                className="cursor-pointer bg-red-500 hover:bg-red-700 px-4 py-1 md:py-2 text-white md:text-sm font-bold relative z-50"
+                                className="cursor-pointer bg-red-500 hover:bg-red-700 px-4 py-1 md:py-2 text-white md:text-sm font-bold relative z-10"
                             >
                                 Read Latest
                             </Link>
                             <Link
                                 href={`/manga-details/${manga}/${oldestChapter?.chapterId}`}
-                                className="cursor-pointer bg-red-500 hover:bg-red-700 px-4 py-1 md:py-2 text-white md:text-sm font-bold relative z-50"
+                                className="cursor-pointer bg-red-500 hover:bg-red-700 px-4 py-1 md:py-2 text-white md:text-sm font-bold relative z-10"
                             >
                                 Read Oldest
                             </Link>
@@ -111,7 +175,7 @@ const MangaDetails = ({ manga }: { manga: string }) => {
                     <h2 className="text-white text-xl font-bold">Chapters</h2>
                     <button
                         onClick={toggleOrder}
-                        className="cursor-pointer bg-red-400 hover:bg-red-500 px-4 py-1 md:py-2 text-white text-sm font-bold relative z-50"
+                        className="cursor-pointer bg-red-400 hover:bg-red-500 px-4 py-1 md:py-2 text-white text-sm font-bold relative z-10"
                     >
                         {reverseOrder ? 'Reverse Order' : 'Undo reverse order'}
                     </button>

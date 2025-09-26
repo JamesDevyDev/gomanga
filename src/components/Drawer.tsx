@@ -147,16 +147,17 @@ const DrawerStyle = () => {
                         </Link>
 
                         {authUser && <div>
-                            <div
+                            <Link
+                                href='/likedManga'
                                 className="p-[16px] font-bold text-[16px] flex items-center justify-start hover:text-red-400 cursor-pointer"
                             >
                                 Liked Mangas
-                            </div>
-                            <div
+                            </Link>
+                            {/* <div
                                 className="p-[16px] font-bold text-[16px] flex items-center justify-start hover:text-red-400 cursor-pointer"
                             >
                                 User Settings
-                            </div>
+                            </div> */}
                         </div>}
 
                         {/* Auth Section */}
