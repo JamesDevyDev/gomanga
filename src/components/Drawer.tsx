@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Menu, X, Search } from "lucide-react";
+import { Menu, X, Search, Github } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import useAuthStore from "@/zustand/useAuthStore";
@@ -193,7 +193,7 @@ const DrawerStyle = () => {
                                                 ? new Date(authUser.createdAt).toLocaleString("en-US", {
                                                     month: "short",
                                                     day: "numeric",
-                                                    year: "numeric",      
+                                                    year: "numeric",
                                                 })
                                                 : ""}
                                         </p>
@@ -211,6 +211,24 @@ const DrawerStyle = () => {
                             </div>
                         )}
                     </ul>
+
+                    <div className='flex items-center justify-center flex-col absolute left-[50%] translate-x-[-50%] bottom-[1%]'>
+
+                        <p className='text-[10px] text-white mb-3'>
+                            API : <span className='underline'><Link href='https://GOMANGA-API.vercel.app'>GOMANGA-API.vercel.app</Link></span>
+                        </p>
+                        <Link
+                            title="https://github.com/JamesDevyDev"
+                            href="https://github.com/JamesDevyDev"
+                            className="w-[35px] h-[35px] bg-gray-900 rounded-lg flex items-center justify-center cursor-pointer"
+                        >
+                            <Github color={"#b91c1c"} />
+                        </Link>
+                        <div className="text-[9px] text-center text-gray-200 mt-[5px]">
+                            show love by following my github.
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
