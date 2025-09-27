@@ -26,7 +26,7 @@ const SearchComp = ({ search }: { search: string }) => {
 
             {/* Grid */}
             <div
-                className={`w-full px-[50px] md:px-[150px] min-h-[100vh] py-[50px] gap-4 
+                className={`w-full px-[50px] md:px-[150px] min-h-[100vh] py-[50px] gap-4
                     grid 
                     grid-cols-2 
                     sm:grid-cols-3
@@ -47,7 +47,7 @@ const SearchComp = ({ search }: { search: string }) => {
                             key={index}
                             className="aspect-[2/3] flex flex-col overflow-hidden min-w-0 group cursor-pointer"
                         >
-                            <div className="bg-black w-full h-[80%] flex-shrink-0">
+                            <div className="bg-black w-full h-[75%] flex-shrink-0 ">
                                 <img
                                     src={card?.imgUrl}
                                     alt={card?.title}
@@ -55,7 +55,7 @@ const SearchComp = ({ search }: { search: string }) => {
                                 />
                             </div>
 
-                            <div className="pt-2 flex flex-col gap-1 h-[20%] min-w-0 flex-shrink transition-all duration-300 group-hover:-translate-y-1">
+                            <div className="pt-2 flex flex-col min-w-0 flex-shrink transition-all duration-300 group-hover:-translate-y-1">
                                 <h3 className="text-white font-semibold text-sm truncate whitespace-nowrap overflow-hidden min-w-0 transition-colors duration-300 group-hover:text-yellow-400">
                                     {card?.title}
                                 </h3>
