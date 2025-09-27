@@ -212,9 +212,9 @@ const DrawerStyle = () => {
                         )}
                     </ul>
 
-                    <div className='flex items-center justify-center flex-col absolute left-[50%] translate-x-[-50%] bottom-[1%]'>
+                    <div className='flex items-center justify-center flex-col absolute left-[50%] translate-x-[-50%] bottom-[1%] w-full'>
 
-                        <p className='text-[10px] text-white mb-3'>
+                        <p className='text-[10px] w-full text-white text-center mb-3'>
                             API : <span className='underline'><Link href='https://GOMANGA-API.vercel.app'>GOMANGA-API.vercel.app</Link></span>
                         </p>
                         <Link
